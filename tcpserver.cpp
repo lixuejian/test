@@ -1,16 +1,16 @@
 /*********************************************************************************
   *FileName:  TcpServer
-  *Author:  李学健
+  *Author:  锟斤拷学锟斤拷
   *Version:  1.0
   *Date:  2016-11-11
-  *Description:  本程序的主要目的为作为网络通信的服务端与客户端建立连接之后
-				 接收客户端发来的字符控制摄像头旋转
+  *Description:  锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷要目锟斤拷为锟斤拷为锟斤拷锟斤拷通锟脚的凤拷锟斤拷锟斤拷锟斤拷锟酵伙拷锟剿斤拷锟斤拷锟斤拷锟斤拷之锟斤拷
+				 锟斤拷锟秸客伙拷锟剿凤拷锟斤拷锟斤拷锟街凤拷锟斤拷锟斤拷锟斤拷锟斤拷头锟斤拷转
   *Others:  
-  *Function List:  //主要函数列表，每条记录应包含函数名及功能简要说明
-     1.Serial_write：串口写函数
-     2.Serial_read：串口读函数
-	 3.Serial_open：打开串口
-  *History:  //修改历史记录列表，每条修改记录应包含修改日期、修改者及修改内容简介
+  *Function List:  //锟斤拷要锟斤拷锟斤拷锟叫憋拷锟斤拷每锟斤拷锟斤拷录应锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟杰硷拷要说锟斤拷
+     1.Serial_write锟斤拷锟斤拷锟斤拷写锟斤拷锟斤拷
+     2.Serial_read锟斤拷锟斤拷锟节讹拷锟斤拷锟斤拷
+	 3.Serial_open锟斤拷锟津开达拷锟斤拷
+  *History:  //锟睫革拷锟斤拷史锟斤拷录锟叫憋拷锟斤拷每锟斤拷锟睫改硷拷录应锟斤拷锟斤拷锟睫革拷锟斤拷锟节★拷锟睫革拷锟竭硷拷锟睫革拷锟斤拷锟捷硷拷锟斤拷
      1.Date:
        Author:
        Modification:
@@ -28,16 +28,16 @@ using namespace std;
 #include <winbase.h>
 #include <tchar.h>
 #include <SDKDDKVer.h>
-HANDLE hcom;//串口句柄，全局
+HANDLE hcom;//锟斤拷锟节撅拷锟斤拷锟斤拷全锟斤拷
 
-#define BUF_SIZE    64      // 缓冲区大小
+#define BUF_SIZE    64      // 锟斤拷锟斤拷锟斤拷锟斤拷小
  
 int Serial_write(const void *Buf,int size)  
 {  
     DWORD dw;  
     WriteFile(hcom,Buf,size,&dw,NULL);  
 	    //if(dw==size)
-		//printf("数据发送成功！\n");
+		//printf("锟斤拷锟捷凤拷锟酵成癸拷锟斤拷\n");
     return dw;  
 }  
 int Serial_read(void *OutBuf,int size)  
@@ -52,13 +52,13 @@ int Serial_open()
 	hcom = CreateFile(_T("COM4"),GENERIC_READ|GENERIC_WRITE,0,0,OPEN_EXISTING,0,0);
     if(hcom==(HANDLE)-1)
     {
-        printf("打开串口失败！\n");
+        printf("锟津开达拷锟斤拷失锟杰ｏ拷\n");
         return FALSE;
     }
 	else
-		printf("打开串口成功！\n");
+		printf("锟津开达拷锟节成癸拷锟斤拷\n");
 
-	//配置串口参数 2400-n-8-1
+	//锟斤拷锟矫达拷锟节诧拷锟斤拷 2400-n-8-1
 	DCB dcb;
 	GetCommState(hcom,&dcb);
 	dcb.BaudRate = 2400;
@@ -69,18 +69,18 @@ int Serial_open()
 	if (!SetCommState(hcom,&dcb))
 	{
 		DWORD dwError = GetLastError();
-		printf("配置串口失败！\n");
+		printf("锟斤拷锟矫达拷锟斤拷失锟杰ｏ拷\n");
 		return FALSE;
 	}
 	else
-		printf("串口配置成功！\n");
+		printf("锟斤拷锟斤拷锟斤拷锟矫成癸拷锟斤拷\n");
 	if( !PurgeComm( hcom, PURGE_RXCLEAR ) )  
 	{
-		printf("IO清理失败！\n");
+		printf("IO锟斤拷锟斤拷失锟杰ｏ拷\n");
 		return FALSE; 
 	}
 	else 
-		printf("IO清理成功！\n");
+		printf("IO锟斤拷锟斤拷锟缴癸拷锟斤拷\n");
 		
 	SetupComm(hcom,100,100);
 
@@ -95,8 +95,8 @@ int main()
 {
     WSADATA wsadata;
     SOCKET listenSocket;
-    SOCKET  sClient;						// 客户端套接字，用于实现与客户端的通信
-	int     retVal;							// 调用各种Socket函数的返回值 
+    SOCKET  sClient;						// 锟酵伙拷锟斤拷锟阶斤拷锟街ｏ拷锟斤拷锟斤拷实锟斤拷锟斤拷锟酵伙拷锟剿碉拷通锟斤拷
+	int     retVal;							// 锟斤拷锟矫革拷锟斤拷Socket锟斤拷锟斤拷锟侥凤拷锟斤拷值 
 
     SOCKADDR_IN serverAddr,clientAddr;
  
@@ -173,57 +173,50 @@ int main()
         //    cout<<buf<<endl;
         //}
 
-		// 获取当前系统时间
+		// 锟斤拷取锟斤拷前系统时锟斤拷
 		SYSTEMTIME st;
 		GetLocalTime(&st);
 		char sDateTime[30];
 		sprintf(sDateTime, "%4d-%2d-%2d %2d:%2d:%2d",st.wYear,st.wMonth,st.wDay,st.wHour,st.wMinute,st.wSecond);
-		// 打印输出的信息
+		// 锟斤拷印锟斤拷锟斤拷锟斤拷锟斤拷息
 		printf("%s, Recv From Client [%s:%d] :%s\n", sDateTime, inet_ntoa(clientAddr.sin_addr), clientAddr.sin_port, buf);   
-		// 如果客户端发送quit字符串，则服务器退出
+		// 锟斤拷锟斤拷锟酵伙拷锟剿凤拷锟斤拷quit锟街凤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟剿筹拷
 		
 		
 		//strcmp(buf, "w") == 0;
 		if (strcmp(buf, "w") == 0)    
 		{
 			Serial_write(ActionUp,7);
-			printf("正在向上转...\n");	
+			printf("锟斤拷锟斤拷锟斤拷锟斤拷转...\n");	
 		}
 		else if (strcmp(buf, "x") == 0) 
 		{
 			Serial_write(ActionDown,7);
-			printf("正在向下转...\n");			
+			printf("锟斤拷锟斤拷锟斤拷锟斤拷转...\n");			
 		}
 		else if(strcmp(buf, "a") == 0) 
 		{
 			Serial_write(ActionLeft,7);
-			printf("正在向左转...\n");
+			printf("锟斤拷锟斤拷锟斤拷锟斤拷转...\n");
 		}
 		else if (strcmp(buf, "d") == 0)
 		{
 			Serial_write(ActionRight,7);
-			printf("正在向右转...\n");	
+			printf("锟斤拷锟斤拷锟斤拷锟斤拷转...\n");	
 		}
 		else if (strcmp(buf, "s") == 0)
 		{
 			Serial_write(ActionStop,7);
-			printf("已停止...\n");	
+			printf("锟斤拷停止...\n");	
 		}
-		/*else if (strcmp(buf, "q") == 0)
-		{
-           break;
-		}
-		else
-		{
-			printf("指令错误，请重新输入命令\n");
-		}*/
+
 		
 		if(strcmp(buf, "quit") == 0)
 		{
 			retVal = send(sClient,"quit",strlen("quit"),0);   
 			break;
 		}
-		else		// 否则向客户端发送回显字符串
+		else		// 锟斤拷锟斤拷锟斤拷锟酵伙拷锟剿凤拷锟酵伙拷锟斤拷锟街凤拷锟斤拷
 		{
 			char    msg[BUF_SIZE];  
 			sprintf(msg, "Server received Message is: %s", buf); 
@@ -250,141 +243,3 @@ int main()
  
     return 0;
 }
-
-
-
-
-
-
-//// TcpServer.cpp : 定义控制台应用程序的入口点。
-////
-//
-//#include "stdafx.h"
-//#include <WINSOCK2.H>   
-//#include <iostream>
-//  
-//using namespace std;
-//
-//#pragma comment(lib,"WS2_32.lib")   
-//#define BUF_SIZE    64      // 缓冲区大小
-//
-//int _tmain(int argc, _TCHAR* argv[])
-//{
-//	WSADATA wsd;					// WSADATA变量，用于初始化Windows Socket   
-//    SOCKET  sServer;					// 服务器套接字，用于监听客户端请求
-//    SOCKET  sClient;					// 客户端套接字，用于实现与客户端的通信   
-//    int     retVal;							// 调用各种Socket函数的返回值   
-//    char    buf[BUF_SIZE];			// 用于接受客户端数据的缓冲区   
-//  
-//    // 初始化套接字动态库   
-//    if(WSAStartup(MAKEWORD(2,2),&wsd) != 0)   
-//    {   
-//        printf("WSAStartup failed !\n");   
-//        return 1;   
-//    }     
-//    // 创建用于监听的套接字   
-//    sServer = socket(AF_INET,SOCK_STREAM,IPPROTO_TCP);   
-//    if(INVALID_SOCKET == sServer)   
-//    {   
-//        printf("socket failed !\n");   
-//        WSACleanup();   
-//        return -1;   
-//    }     
-//	// 设置套接字为非阻塞模式
-//	int iMode = 1;
-//	retVal = ioctlsocket(sServer, FIONBIO, (u_long FAR*) &iMode);
-//	if(retVal == SOCKET_ERROR)
-//	{
-//		printf("ioctlsocket failed !\n");
-//        WSACleanup();   
-//        return -1;   
-//	}
-//	
-//    // 设置服务器套接字地址   
-//    SOCKADDR_IN addrServ;   
-//    addrServ.sin_family = AF_INET;   
-//    addrServ.sin_port = htons(9990);		// 监听端口为9990
-//    addrServ.sin_addr.S_un.S_addr = htonl(INADDR_ANY);    
-//    // 绑定套接字sServer到本地地址，端口9990  
-//    retVal = bind(sServer,(const struct sockaddr*)&addrServ,sizeof(SOCKADDR_IN));   
-//    if(SOCKET_ERROR == retVal)   
-//    {   
-//        printf("bind failed !\n");   
-//        closesocket(sServer);   
-//        WSACleanup();   
-//        return -1;   
-//    }     
-//    // 监听套接字   
-//    retVal = listen(sServer,1);   
-//    if(SOCKET_ERROR == retVal)   
-//    {   
-//        printf("listen failed !\n");   
-//        closesocket(sServer);   
-//        WSACleanup();   
-//        return -1;   
-//    }     
-//    // 接受客户请求   
-//    printf("TCP Server start...\n");
-//    sockaddr_in addrClient;							// 客户端地址
-//    int addrClientlen = sizeof(addrClient); 
-//
-//	printf("addrClientlen==%d!!\n",addrClientlen);
-//
-//	sClient = accept(sServer,(sockaddr FAR*)&addrClient,&addrClientlen); 
-//    if(INVALID_SOCKET == sClient)   
-//    {   
-//        printf("accept failed !\n");   
-//        closesocket(sServer);   
-//        WSACleanup();   
-//        return -1;   
-//    }   
-//    // 循环接收客户端的数据，直接客户端发送quit命令后退出。  
-//	while(true)
-//	{
-//		ZeroMemory(buf,BUF_SIZE);						// 清空接收数据的缓冲区
-//		retVal = recv(sClient,buf,BUFSIZ,0);				// 
-//		if(SOCKET_ERROR == retVal)   
-//		{   
-//			printf("recv failed !\n");   
-//			closesocket(sServer);   
-//			closesocket(sClient);   
-//			WSACleanup();   
-//			return -1;   
-//		}   
-//		// 获取当前系统时间
-//		SYSTEMTIME st;
-//		GetLocalTime(&st);
-//		char sDateTime[30];
-//		sprintf(sDateTime, "%4d-%2d-%2d %2d:%2d:%2d",st.wYear,st.wMonth,st.wDay,st.wHour,st.wMinute,st.wSecond);
-//		// 打印输出的信息
-//		printf("%s, Recv From Client [%s:%d] :%s\n", sDateTime, inet_ntoa(addrClient.sin_addr), addrClient.sin_port, buf);   
-//		// 如果客户端发送quit字符串，则服务器退出
-//		if(strcmp(buf, "quit") == 0)
-//		{
-//			retVal = send(sClient,"quit",strlen("quit"),0);   
-//			break;
-//		}
-//		else		// 否则向客户端发送回显字符串
-//		{
-//			char    msg[BUF_SIZE];  
-//			sprintf(msg, "Message received - %s", buf); 
-//			retVal = send(sClient, msg, strlen(msg),0);   
-//			if(SOCKET_ERROR == retVal)   
-//			{   
-//				printf("send failed !\n");   
-//				closesocket(sServer);   
-//				closesocket(sClient);   
-//				WSACleanup();   
-//				return -1;   
-//			}   
-//		}
-//	}
-//    // 释放套接字   
-//    closesocket(sServer);   
-//    closesocket(sClient);   
-//    WSACleanup();   
-//	// 暂停，按任意键退出
-//	system("pause");
-//	return 0;
-//}
-
